@@ -8,11 +8,12 @@ jobs:
     if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
-      run: bash .github/scripts/copy_to_s3.sh
-      env:
-        FOLDER: ./data_folder/
-        AWS_REGION: 'eu-central-1'
-        S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        S3_KEY: ${{ secrets.S3_KEY }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Upload folder to s3
+        run: bash .github/scripts/copy_to_s3.sh
+        env:
+          FOLDER: ./data_folder/
+          AWS_REGION: 'eu-central-1'
+          S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          S3_KEY: ${{ secrets.S3_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
